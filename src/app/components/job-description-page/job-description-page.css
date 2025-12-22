@@ -1,0 +1,83 @@
+.page-wrapper {
+    margin-top: 80px;
+    min-height: 70vh;
+}
+
+.page-card {
+    max-width: 580px;
+    margin: auto;
+    padding: 30px 35px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    animation: authFade 0.6s ease forwards;
+}
+
+.page-title {
+    text-align: center;
+    font-weight: 700;
+    color: #1f2a75;
+    margin-bottom: 25px;
+    animation: titleUp 0.7s ease forwards;
+    animation-delay: 0.15s;
+}
+
+.form-control {
+    height: 44px;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #18b4d6;
+    box-shadow: 0 0 0 0.15rem rgba(24, 180, 214, 0.25);
+}
+
+textarea.form-control {
+    height: auto;
+    resize: vertical;
+}
+
+.btn-primary {
+    background-color: #18b4d6;
+    border: none;
+    height: 46px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #14a2c0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes authFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes titleUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

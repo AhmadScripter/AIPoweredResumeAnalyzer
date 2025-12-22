@@ -1,0 +1,151 @@
+.dashboard {
+    padding-top: 70px;
+    background: linear-gradient(180deg, #f3f6fb, #ffffff);
+    min-height: 90vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    animation: dashFade 0.6s ease forwards;
+}
+
+.welcome-title {
+    font-weight: 700;
+    color: #1f2a75;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.welcome-text {
+    color: #6c757d;
+    font-size: 14px;
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.section-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c2c2c;
+}
+
+.action-card {
+    background: linear-gradient(135deg, #e8fbff, #f3feff);
+    border-radius: 12px;
+    padding: 45px 25px;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    animation: cardPop 0.45s ease forwards;
+}
+
+.col-md-4:nth-child(1) .action-card {
+    animation-delay: 0.15s;
+}
+
+.col-md-4:nth-child(2) .action-card {
+    animation-delay: 0.25s;
+}
+
+.col-md-4:nth-child(3) .action-card {
+    animation-delay: 0.35s;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.action-icon {
+    font-size: 34px;
+    color: #18b4d6;
+    margin-bottom: 10px;
+}
+
+.action-text {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    animation: statFade 0.5s ease forwards;
+}
+
+.col-md-6:nth-child(1) .stat-card {
+    animation-delay: 0.2s;
+}
+
+.col-md-6:nth-child(2) .stat-card {
+    animation-delay: 0.3s;
+}
+
+.col-md-6:nth-child(3) .stat-card {
+    animation-delay: 0.4s;
+}
+
+.col-md-6:nth-child(4) .stat-card {
+    animation-delay: 0.5s;
+}
+
+.action-card,
+.stat-card {
+    will-change: transform, opacity;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2a75;
+}
+
+.user-pill {
+    background: #f1f4f9;
+    border-radius: 30px;
+    padding: 6px 14px;
+    font-size: 14px;
+    color: #1f2a75;
+}
+
+
+@keyframes dashFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardPop {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes statFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
