@@ -1,0 +1,180 @@
+.page-wrapper {
+    min-height: 80vh;
+    background: radial-gradient(circle at top, #eef3f8, #ffffff);
+    padding: 30px 50px;
+}
+
+.page-title {
+    margin: 35px 0 20px;
+    font-weight: 700;
+    color: #182b59;
+}
+
+.table-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.07);
+    animation: cardFade 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    font-size: 14px;
+    color: #6b7a99;
+    padding-bottom: 12px;
+}
+
+tbody tr {
+    border-top: 1px solid #eef1f6;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: rowFade 0.4s ease forwards;
+}
+
+tbody tr:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+tbody tr:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+tbody tr:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+tbody tr:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+tbody tr:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+tbody td {
+    padding: 14px 0;
+    font-size: 14px;
+    color: #2d3b55;
+}
+
+.score-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    animation: popScore 0.4s ease forwards;
+    animation-delay: 0.3s;
+    transform: scale(0.85);
+    opacity: 0;
+}
+
+.score-green {
+    border: 3px solid #22c55e;
+    color: #22c55e;
+}
+
+.score-yellow {
+    border: 3px solid #facc15;
+    color: #facc15;
+}
+
+.score-gray {
+    border: 3px solid #cbd5e1;
+    color: #64748b;
+}
+
+.view-btn {
+    background: #18b4d6;
+    border: none;
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background: #149dbb;
+}
+
+@media (max-width: 992px) {
+    .page-wrapper {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .profile {
+        justify-content: center;
+    }
+
+    .table-card {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 650px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 20px;
+    }
+
+    .view-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .score-circle {
+        width: 34px;
+        height: 34px;
+        font-size: 11px;
+    }
+}
+
+
+@keyframes cardFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rowFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popScore {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

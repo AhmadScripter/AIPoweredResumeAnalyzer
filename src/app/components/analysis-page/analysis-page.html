@@ -1,0 +1,58 @@
+<div class="container page-wrapper">
+
+    <div class="row">
+
+        <!-- Left Card -->
+        <div class="col-lg-6">
+            <div class="card-box">
+                <h3>Analysis Result Page</h3>
+
+                <div class="progress-circle" [style.background]="
+               'conic-gradient(#18d27c 0% ' + matchPercentage +
+               '%, #12b9e6 ' + matchPercentage + '% 100%)'">
+                    <div class="progress-inner">
+                        {{ matchPercentage }}%
+                    </div>
+                </div>
+
+                <p class="match-text">
+                    Your resume matches this job by {{ matchPercentage }}%
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Card -->
+        <div class="col-lg-6">
+            <div class="card-box">
+
+                <h4>Matched Skills</h4>
+                <div class="skills">
+                    <span class="skill green" *ngFor="let skill of matchedSkills">
+                        {{ skill }}
+                    </span>
+                </div>
+
+                <h4>Missing Skills</h4>
+                <div class="skills">
+                    <span class="skill red" *ngFor="let skill of missingSkills">
+                        {{ skill }}
+                    </span>
+                </div>
+
+                <h4>AI Suggestions</h4>
+                <ul>
+                    <li *ngFor="let item of suggestions">
+                        {{ item }}
+                    </li>
+                </ul>
+
+                <div class="actions">
+                    <button class="btn-outline">Download Report</button>
+                    <button class="btn-outline">Analyze Another Job</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
