@@ -27,6 +27,14 @@ const resumeSchema = new mongoose.Schema({
     fileSize: {
         type: Number,
         required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    skills: {
+        type: [String],
+        default: []
     }
 },
     { timestamps: true }
