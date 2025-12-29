@@ -46,21 +46,21 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="stat-card">
-                            <div class="stat-label">Total resumes analyzed</div>
+                            <div class="stat-label">Total resumes Uploaded</div>
                             <div class="stat-value">15</div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="stat-card">
-                            <div class="stat-label">Average match score</div>
-                            <div class="stat-value">78%</div>
+                            <div class="stat-label">Job Description Analyzed</div>
+                            <div class="stat-value">7</div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="stat-card">
-                            <div class="stat-label">Average match score</div>
+                        <div class="stat-card highlight">
+                            <div class="stat-label">Best Match</div>
                             <div class="stat-value">78%</div>
                         </div>
                     </div>
@@ -76,5 +76,45 @@
                 </div>
             </div>
         </div>
+
+        @if(recentAnalyses.length > 0){
+            <div class="table-card">
+        
+                <h4>Recent Analyses</h4>
+        
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Resume</th>
+                                <th>Match</th>
+                                <th>Skills</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr *ngFor="let item of recentAnalyses">
+                                <td>{{ item.resume }}</td>
+                                <td>{{ item.score }}%</td>
+                                <td>{{ item.skills }}</td>
+                                <td>{{ item.date }}</td>
+                                <td>
+                                    <button class="view-btn">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+            </div>
+            }
+            @if(recentAnalyses.length === 0){
+            <div class="empty-state">
+                <p>You haven't uploaded any resume yet.</p>
+                <button class="action-btn primary">Upload Resume</button>
+            </div>
+            }
     </div>
 </div>

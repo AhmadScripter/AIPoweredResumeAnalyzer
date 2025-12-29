@@ -15,7 +15,7 @@ export const routes: Routes = [
     {path: 'register', component: RegisterPage},
     {path: 'login', component: SigninPage},
     {path: 'job-description', component: JobDescriptionPage},
-    {path: 'user-dashboard', component: UserDashboardPage},
+    {path: 'dashboard', component: UserDashboardPage},
     {path: 'upload', component: UploadResumePage},
     {path: 'analysis', component: AnalysisPage},
     {path: 'past-analysis', component: PastAnalyses},

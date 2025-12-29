@@ -2,20 +2,20 @@
     <div class="auth-card shadow-sm">
         <h2 class="auth-title">AI Resume Analyzer</h2>
 
-        <form>
+        <form (ngSubmit)="onSubmit()">
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Full Name">
+                <input type="text" class="form-control" name="name" [(ngModel)]="formData.name" placeholder="Full Name">
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control" placeholder="abcd@gmail.com">
+                <input type="email" class="form-control" name="email" [(ngModel)]="formData.email" placeholder="abcd@gmail.com">
             </div>
 
             <div class="mb-3">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" name="password" [(ngModel)]="formData.password" placeholder="Password">
             </div>
 
             <div class="mb-4">
-                <input type="password" class="form-control" placeholder="Confirm Password">
+                <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="formData.confirmPassword" placeholder="Confirm Password">
             </div>
 
             <div class="d-grid">
