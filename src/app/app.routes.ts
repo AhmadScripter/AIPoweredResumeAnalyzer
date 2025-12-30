@@ -8,16 +8,17 @@ import { UploadResumePage } from './components/upload-resume-page/upload-resume-
 import { AnalysisPage } from './components/analysis-page/analysis-page';
 import { Pagenotfound } from './components/pagenotfound/pagenotfound';
 import { PastAnalyses } from './components/past-analyses/past-analyses';
+import { authGuard } from './Guards/auth-guard';
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full' },
-    {path: 'home', component: MainPage},
-    {path: 'register', component: RegisterPage},
-    {path: 'login', component: SigninPage},
-    {path: 'job-description', component: JobDescriptionPage},
-    {path: 'dashboard', component: UserDashboardPage},
-    {path: 'upload', component: UploadResumePage},
-    {path: 'analysis', component: AnalysisPage},
-    {path: 'past-analysis', component: PastAnalyses},
-    {path: '**', component: Pagenotfound}
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: MainPage },
+    { path: 'register', component: RegisterPage },
+    { path: 'login', component: SigninPage },
+    { path: 'job-description', component: JobDescriptionPage, canActivate: [authGuard] },
+    { path: 'dashboard', component: UserDashboardPage, canActivate: [authGuard] },
+    { path: 'upload', component: UploadResumePage, canActivate: [authGuard] },
+    { path: 'analysis', component: AnalysisPage, canActivate: [authGuard] },
+    { path: 'past-analysis', component: PastAnalyses, canActivate: [authGuard] },
+    { path: '**', component: Pagenotfound }
 ];

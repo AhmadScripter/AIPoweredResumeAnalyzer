@@ -20,7 +20,7 @@ export class MainPage {
 
   uploadResume() {
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/upload-resume']);
+      this.router.navigate(['/upload']);
     } else {
       alert('Please login first');
       this.router.navigate(['/login']);

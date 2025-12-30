@@ -156,7 +156,8 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
 }
 
-.view-btn {
+.view-btn,
+.btn {
     padding: 6px 14px;
     border-radius: 20px;
     border: none;

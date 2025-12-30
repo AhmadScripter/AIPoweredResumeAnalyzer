@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser } = require('../controllers/authController');
+const { registerUser, loginUser, getUserProfile } = require('../controllers/authController');
 const protect = require('../middleware/authMiddleware');
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/me', protect, (req, res) => {
-    res.status(200).json({ message: 'User profile fetched successfully', user: req.user });
-})
+router.get('/me', protect, getUserProfile);
 
 module.exports = router;

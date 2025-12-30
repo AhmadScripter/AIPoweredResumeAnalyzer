@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post(`${this.API_URL}/login`, data);
   }
 
+  getProfile() {
+    return this.http.get(`${this.API_URL}/me`)
+  }
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
@@ -32,6 +36,6 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
-  }  
+  }
 
 }
