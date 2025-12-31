@@ -11,4 +11,9 @@ export class ResumeService {
   getMyResumes() {
     return this.http.get(`${this.API_URL}/my`)
   }
+  uploadResume(file: File) {
+    const formData = new FormData();
+    formData.append('resume', file)
+    return this.http.post(`${this.API_URL}/upload`, formData)
+  }
 }

@@ -15,6 +15,14 @@ const jdSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String,
+        default: ''
+    },
+    jobTitle: {
+        type: String,
+        default: ''
+    },
     jdSkills: {
         type: [String],
         default: []

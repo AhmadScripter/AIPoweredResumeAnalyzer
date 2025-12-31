@@ -4,20 +4,51 @@
 
         <div class="drop-zone">
             <div class="drop-icon">
-                <i class="bi bi-cloud-arrow-up-fill"></i>
+                @if(!selectedFile && !isUploading && !uploadedFile){<i class="bi bi-cloud-arrow-up-fill"></i>}
+                @if(selectedFile && !isUploading && !uploadedFile){<i class="bi bi-file-earmark-fill text-primary"></i>}
+                @if(isUploading){<i class="bi bi-arrow-clockwise animate-spin"></i>}
+                @if(uploadedFile && !isUploading){<i class="bi bi-check-circle-fill text-success"></i>}
             </div>
-            <div class="drop-text">Drag & Drop PDF here</div>
 
-            <label for="resumeUpload" class="btn btn-outline-primary btn-sm">
+            <div class="drop-text">
+
+                @if (!selectedFile && !uploadedFile) {
+                <span>
+                    Drag & Drop PDF here
+                </span>
+                }
+                @if (selectedFile && !isUploading && !uploadedFile) {
+                <span>
+                    {{ selectedFile.name }}
+                    <br>
+                    <small class="text-muted">Ready to upload</small>
+                </span>
+                }
+                @if(isUploading){
+                <span>
+                    Uploading...
+                </span>
+                }
+                @if(uploadedFile && !isUploading){
+                <span>
+                    {{ uploadedFile.originalName }}
+                    <br>
+                    <small class="text-success">Upload complete</small>
+                </span>
+                }
+
+            </div>
+
+            <label for="resumeUpload" class="btn btn-outline-primary btn-sm mt-2">
                 Choose File
             </label>
-            <input type="file" id="resumeUpload" accept="application/pdf">
+            <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx" (change)="onFileSelect($event)">
 
             <div class="file-info">Only PDF, max 2MB</div>
         </div>
 
-        <button class="btn btn-upload text-white w-100">
-            Upload & Continue
+        <button class="btn btn-upload text-white w-100" [disabled]="!selectedFile || isUploading" (click)="upload()">
+            Uplaod Resume
         </button>
     </div>
 </div>

@@ -1,23 +1,38 @@
 <div class="container page-wrapper">
-    <div class="page-card shadow-sm">
-        <h2 class="page-title">Job Description</h2>
+  <div class="page-card shadow-sm">
+    <h2 class="page-title">Job Description</h2>
 
-        <form>
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Job Title">
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Company Name">
-            </div>
+    <form (ngSubmit)="analyze()">
 
-            <div class="mb-3">
-                <textarea type="text" class="form-control" placeholder="Job Description" rows="3"></textarea>
-            </div>
+      <!-- Resume select -->
+      <div class="mb-3">
+        <select class="form-control" [(ngModel)]="selectedResumeId" name="resume">
+          <option value="" disabled selected>Select Resume</option>
+          <option *ngFor="let r of resumes" [value]="r._id">
+            {{ r.originalName }}
+          </option>
+        </select>
+      </div>
 
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Analyze Resume</button>
-            </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Job Title" [(ngModel)]="jobTitle" name="jobTitle">
+      </div>
 
-        </form>
-    </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="companyName" name="company">
+      </div>
+
+      <div class="mb-3">
+        <textarea class="form-control" placeholder="Job Description" rows="4" [(ngModel)]="jobDescription"
+          name="jd"></textarea>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary" [disabled]="!selectedResumeId || !jobDescription || isAnalyzing">
+          {{ isAnalyzing ? 'Analyzing...' : 'Analyze Resume' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
 </div>

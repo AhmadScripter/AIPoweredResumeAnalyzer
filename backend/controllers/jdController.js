@@ -5,7 +5,7 @@ const extractSkills = require('../utils/extractSkills');
 
 const analyzeJD = async (req, res) => {
     try {
-        const { jdText, resumeId } = req.body;
+        const { jdText, resumeId, jobTitle, company } = req.body;
 
         if (!jdText || !resumeId) {
             return res.status(400).json({ message: 'JD text and resume required' });
@@ -38,6 +38,8 @@ const analyzeJD = async (req, res) => {
             user: req.user._id,
             resume: resume._id,
             jdText,
+            jobTitle,
+            company,
             jdSkills,
             matchedSkills,
             missingSkills,
@@ -48,6 +50,8 @@ const analyzeJD = async (req, res) => {
             user: req.user._id,
             resume: resume._id,
             jobDescription: jdText,
+            jobTitle,
+            company,
             matchedSkills,
             missingSkills,
             matchPercentage: matchScore
