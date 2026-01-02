@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { ResumeService } from '../../services/resume-service';
 import { AnalysisServices } from '../../services/analysis-services';
 import { AuthService } from '../../services/auth-service';
@@ -23,7 +23,8 @@ export class UserDashboardPage implements OnInit {
     private resumeService: ResumeService,
     private analysisService: AnalysisServices,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -58,6 +59,10 @@ export class UserDashboardPage implements OnInit {
       this.calculateStats();
       this.cdr.markForCheck();
     });
+  }
+
+  viewAnalysis(id: string) {
+    this.router.navigate(['/analysis-result', id]);
   }
 
   loadProfile() {

@@ -7,7 +7,7 @@
       <!-- Resume select -->
       <div class="mb-3">
         <select class="form-control" [(ngModel)]="selectedResumeId" name="resume">
-          <option value="" disabled selected>Select Resume</option>
+          <option value="" disabled>Select Resume</option>
           <option *ngFor="let r of resumes" [value]="r._id">
             {{ r.originalName }}
           </option>

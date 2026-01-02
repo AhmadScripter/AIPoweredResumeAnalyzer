@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ResumeService } from '../../services/resume-service';
 import { AnalysisServices } from '../../services/analysis-services';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-description-page',
@@ -10,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './job-description-page.html',
   styleUrl: './job-description-page.css',
 })
-export class JobDescriptionPage {
+export class JobDescriptionPage implements OnInit {
   resumes: any[] = [];
   selectedResumeId = '';
 
@@ -20,11 +21,12 @@ export class JobDescriptionPage {
 
   isAnalyzing = false;
 
-  constructor(private resumeService: ResumeService, private analysisService: AnalysisServices) { }
+  constructor(private resumeService: ResumeService, private analysisService: AnalysisServices, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.resumeService.getMyResumes().subscribe((res: any) => {
       this.resumes = res.resumes;
+      this.cdr.detectChanges();
     });
   }
 
@@ -42,6 +44,7 @@ export class JobDescriptionPage {
       next: (res: any) => {
         this.isAnalyzing = false;
         console.log('Analysis result', res);
+        this.router.navigate(['/analysis-result', res.analysisId]);
       },
       error: (err) => {
         this.isAnalyzing = false;

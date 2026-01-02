@@ -46,7 +46,7 @@ const analyzeJD = async (req, res) => {
             matchScore
         });
 
-        await Analysis.create({
+        const newAnalysis = await Analysis.create({
             user: req.user._id,
             resume: resume._id,
             jobDescription: jdText,
@@ -59,6 +59,7 @@ const analyzeJD = async (req, res) => {
 
         res.status(200).json({
             message: 'JD analyzed successfully',
+            analysisId: newAnalysis._id,
             matchScore,
             matchedSkills,
             missingSkills

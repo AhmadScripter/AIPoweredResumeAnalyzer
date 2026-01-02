@@ -19,6 +19,7 @@ export const routes: Routes = [
     { path: 'dashboard', component: UserDashboardPage, canActivate: [authGuard] },
     { path: 'upload', component: UploadResumePage, canActivate: [authGuard] },
     { path: 'analysis', component: AnalysisPage, canActivate: [authGuard] },
+    { path: 'analysis-result/:id', component: AnalysisPage, canActivate: [authGuard] },
     { path: 'past-analysis', component: PastAnalyses, canActivate: [authGuard] },
     { path: '**', component: Pagenotfound }
 ];

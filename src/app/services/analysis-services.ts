@@ -13,7 +13,11 @@ export class AnalysisServices {
     return this.http.get(`${this.API_URL}/history`)
   }
 
-  analyze(data:any){
+  getAnalysisById(id: string) {
+    return this.http.get(`${this.API_URL}/${id}`)
+  }
+
+  analyze(data: any) {
     return this.http.post(`${this.JD_API_URL}/analyze`, data)
   }
 }

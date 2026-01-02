@@ -15,4 +15,22 @@ const getMyAnalysis = async (req, res) => {
     }
 };
 
-module.exports = { getMyAnalysis };
+const getAnalysisById = async (req, res) => {
+    try {
+        const analysis = await Analysis.findOne({
+            _id: req.params.id,
+            user: req.user._id
+        }).populate('resume');
+
+        if (!analysis) {
+            return res.status(404).json({ message: 'Analysis not found' });
+        }
+
+        res.json(analysis);
+
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' })
+    }
+}
+
+module.exports = { getMyAnalysis, getAnalysisById };
