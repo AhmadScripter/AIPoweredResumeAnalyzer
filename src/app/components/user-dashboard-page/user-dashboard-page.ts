@@ -39,7 +39,14 @@ export class UserDashboardPage implements OnInit {
         ...this.analysisHistory.map(a => a.matchPercentage)
       );
 
-      const last = this.analysisHistory[this.analysisHistory.length - 1];
+      if (!this.analysisHistory || this.analysisHistory.length === 0) {
+        return;
+      }
+      const sorted = [...this.analysisHistory].sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+      );
+      this.bestMatch = Math.max(...sorted.map(a => a.matchPercentage));
+      const last = sorted[sorted.length - 1];
       this.lastAnalysisDate = new Date(last.createdAt)
         .toLocaleDateString('en-GB');
 
