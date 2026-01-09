@@ -31,6 +31,10 @@ const analysisSchema = new mongoose.Schema({
     matchPercentage: {
         type: Number,
         required: true
+    },
+    aiSuggestions: {
+        type: [String],
+        default: []
     }
 
 }, { timestamps: true });

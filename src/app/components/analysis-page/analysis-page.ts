@@ -35,7 +35,8 @@ export class AnalysisPage implements OnInit {
         this.matchPercentage = res.matchPercentage || 0;
         this.matchedSkills = res.matchedSkills || [];
         this.missingSkills = res.missingSkills || [];
-        this.generateSuggestions();
+        this.suggestions = res.aiSuggestions || [];
+        // this.generateSuggestions();
         this.cdr.detectChanges();
       }, err => {
         console.error(err);
@@ -155,36 +156,5 @@ export class AnalysisPage implements OnInit {
 
     doc.save('resume-analysis-report.pdf');
   }
-
-  // downloadReport() {
-  //   const doc = new jsPDF();
-
-  //   doc.setFontSize(18);
-  //   doc.text('Resume Analysis Report', 14, 20);
-
-  //   doc.setFontSize(12);
-  //   doc.text(`Match Percentage: ${this.matchPercentage}%`, 14, 35);
-
-  //   doc.text('Matched Skills:', 14, 50);
-  //   this.matchedSkills.forEach((s, i) => {
-  //     doc.text(`- ${s}`, 18, 60 + i * 8);
-  //   });
-
-  //   let y = 60 + this.matchedSkills.length * 8 + 10;
-
-  //   doc.text('Missing Skills:', 14, y);
-  //   this.missingSkills.forEach((s, i) => {
-  //     doc.text(`- ${s}`, 18, y + 10 + i * 8);
-  //   });
-
-  //   y += 20 + this.missingSkills.length * 8;
-
-  //   doc.text('AI Suggestions:', 14, y);
-  //   this.suggestions.forEach((s, i) => {
-  //     doc.text(`- ${s}`, 18, y + 10 + i * 8);
-  //   });
-
-  //   doc.save('resume-analysis-report.pdf');
-  // }
 
 }

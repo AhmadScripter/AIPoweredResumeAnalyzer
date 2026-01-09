@@ -1,15 +1,13 @@
 const Resume = require('../models/Resume');
-const extractText = require('../utils/extractResumeText');
-const extractSkills = require('../utils/extractSkills');
+const fs = require('fs');
+const pdfParse = require('pdf-parse');
 
 const uploadResume = async (req, res) => {
     try {
-        if (!req.file) {
-            return res.status(400).json({ message: 'Resume file required' });
-        }
+        const filePath = req.file.path;
 
-        const text = await extractText(req.file.path, req.file.mimetype);
-        const skills = extractSkills(text);
+        const dataBuffer = fs.readFileSync(filePath);
+        const pdfData = await pdfParse(dataBuffer);
 
         const resume = await Resume.create({
             user: req.user._id,
@@ -18,13 +16,10 @@ const uploadResume = async (req, res) => {
             filePath: req.file.path,
             fileType: req.file.mimetype,
             fileSize: req.file.size,
-            content: text,
-            skills
+            extractedText: pdfData.text
         });
-        res.status(201).json({
-            message: 'Resume uploaded and text extracted',
-            extractedSkills: skills
-        });
+
+        res.json(resume);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: 'Server error' });

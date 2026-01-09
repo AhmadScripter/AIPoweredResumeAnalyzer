@@ -44,7 +44,7 @@ export class JobDescriptionPage implements OnInit {
       next: (res: any) => {
         this.isAnalyzing = false;
         console.log('Analysis result', res);
-        this.router.navigate(['/analysis-result', res.analysisId]);
+        this.router.navigate(['/analysis-result', res.analysis._id]);
       },
       error: (err) => {
         this.isAnalyzing = false;

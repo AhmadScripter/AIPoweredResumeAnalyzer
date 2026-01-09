@@ -28,7 +28,7 @@ const resumeSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    content: {
+    extractedText: {
         type: String,
         required: true
     },
