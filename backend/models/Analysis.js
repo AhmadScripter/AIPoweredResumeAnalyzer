@@ -17,21 +17,23 @@ const analysisSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    jobTitle: { type: String },
+    company: { type: String },
 
-    matchedSkills: {
-        type: [String],
-        default: []
-    },
-
-    missingSkills: {
-        type: [String],
-        default: []
-    },
+    matchedSkills: [{ type: String }],
+    missingSkills: [
+        {
+            skill: { type: String, required: true },
+            type: { type: String, enum: ['core', 'optional'], required: true }
+        }
+    ],
 
     matchPercentage: {
         type: Number,
         required: true
     },
+    experienceLevel: { type: String },
+    aiSummary: { type: String },
     aiSuggestions: {
         type: [String],
         default: []

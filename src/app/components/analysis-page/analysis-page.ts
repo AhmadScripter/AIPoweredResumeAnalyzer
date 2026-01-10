@@ -13,7 +13,9 @@ import { AnalysisServices } from '../../services/analysis-services';
 export class AnalysisPage implements OnInit {
   matchPercentage = 0;
   matchedSkills: string[] = [];
-  missingSkills: string[] = [];
+  missingSkills: { skill: string; type: 'core' | 'optional' }[] = [];
+experienceLevel = '';
+aiSummary: String = '';
   suggestions: string[] = [];
   analysisId = '';
 
@@ -35,6 +37,8 @@ export class AnalysisPage implements OnInit {
         this.matchPercentage = res.matchPercentage || 0;
         this.matchedSkills = res.matchedSkills || [];
         this.missingSkills = res.missingSkills || [];
+        this.experienceLevel = res.experienceLevel || 'Not detected';
+        this.aiSummary = res.aiSummary || '';
         this.suggestions = res.aiSuggestions || [];
         // this.generateSuggestions();
         this.cdr.detectChanges();
@@ -75,14 +79,15 @@ export class AnalysisPage implements OnInit {
     doc.setFontSize(14);
     doc.text('Match Summary', 14, y);
 
-    y += 5;
+    y += 6;
     doc.setDrawColor(24, 210, 124);
     doc.setLineWidth(0.5);
     doc.rect(14, y, 180, 18);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(12);
-    doc.text(`Match Percentage: ${this.matchPercentage}%`, 20, y + 12);
+    doc.text(`Match Percentage: ${this.matchPercentage}%`, 20, y + 8);
+    doc.text(`Experience Level: ${this.experienceLevel}`, 20, y + 15);
 
     // ===== Matched Skills =====
     y += 30;
@@ -118,8 +123,8 @@ export class AnalysisPage implements OnInit {
       doc.text('None', 18, y);
       y += 7;
     } else {
-      this.missingSkills.forEach(skill => {
-        doc.text(`• ${skill}`, 18, y);
+      this.missingSkills.forEach(item => {
+        doc.text(`• ${item.skill} (${item.type.toUpperCase()})`, 18, y);
         y += 7;
       });
     }

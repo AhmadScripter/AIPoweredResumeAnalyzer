@@ -3,9 +3,9 @@
   <div class="row">
 
     <!-- Left Card -->
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <div class="card-box">
-        <h3>Analysis Result Page</h3>
+        <h3>Match Overview</h3>
 
         <div class="progress-circle" [style.background]="
                'conic-gradient(#18d27c 0% ' + matchPercentage +
@@ -18,18 +18,29 @@
         <p class="match-text">
           Your resume matches this job by {{ matchPercentage }}%
         </p>
+
+        <div class="experience-card">
+          <span class="label">Experience Level</span>
+          <span class="badge">{{ experienceLevel }}</span>
+        </div>
+
+        <hr>
+        @if(aiSummary){
+        <h4 class="mt-3">AI Summary</h4>
+        <p class="ai-summary summary-box">{{aiSummary}}</p>
+        }
       </div>
     </div>
 
-    <!-- Right Card -->
-    <div class="col-lg-6">
+    <!-- Right Card  -->
+    <div class="col-lg-8">
       <div class="card-box">
 
         <h4>Matched Skills</h4>
         @if (matchedSkills.length > 0) {
         <div class="skills">
           @for (skill of matchedSkills; track skill) {
-          <span class="skill green">
+          <span class="chip chip-green">
             {{ skill }}
           </span>
           }
@@ -44,9 +55,9 @@
         <h4>Missing Skills</h4>
         @if (missingSkills.length > 0) {
         <div class="skills">
-          @for (skill of missingSkills; track skill) {
-          <span class="skill red">
-            {{ skill }}
+          @for (item of missingSkills; track item) {
+          <span class="chip" [ngClass]="item.type === 'core' ? 'chip-red' : 'chip-yellow'">
+            {{ item.skill }} ({{ item.type }})
           </span>
           }
         </div>
@@ -58,11 +69,13 @@
 
         <h4>AI Suggestions</h4>
         @if (suggestions.length > 0) {
-        <ul>
-          @for (item of suggestions; track item) {
-          <li>{{ item }}</li>
-          }
-        </ul>
+        <div class="suggestion-box">
+          <ul>
+            @for (item of suggestions; track item) {
+            <li class="ai-suggestions">{{ item }}</li>
+            }
+          </ul>
+        </div>
         } @else {
         <p class="empty-text">
           No suggestions available. Your resume already looks strong.
