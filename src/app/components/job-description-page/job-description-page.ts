@@ -47,6 +47,9 @@ export class JobDescriptionPage implements OnInit {
         this.router.navigate(['/analysis-result', res.analysis._id]);
       },
       error: (err) => {
+        if (err.status === 429) {
+          alert('Daily limit reached. Try again tomorrow.');
+        }
         this.isAnalyzing = false;
         console.error(err);
         alert('Analysis failed');

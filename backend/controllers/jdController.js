@@ -4,6 +4,27 @@ const { analyzeResumeWithAI } = require('../services/aiService');
 
 const analyzeJD = async (req, res) => {
   try {
+    // ===== Daily Analysis Limit (3 per day) =====
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const todayEnd = new Date();
+    todayEnd.setHours(23, 59, 59, 999);
+
+    const todayAnalysisCount = await Analysis.countDocuments({
+      user: req.user._id,
+      createdAt: {
+        $gte: todayStart,
+        $lte: todayEnd
+      }
+    });
+
+    if (todayAnalysisCount >= 3) {
+      return res.status(429).json({
+        message: "Daily analysis limit reached. You can analyze up to 3 jobs per day."
+      });
+    }
+
     const { jdText, resumeId, jobTitle, company } = req.body;
 
     // Basic validation
