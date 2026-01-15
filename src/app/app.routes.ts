@@ -12,6 +12,7 @@ import { authGuard } from './Guards/auth-guard';
 import { AboutPage } from './components/about-page/about-page';
 import { ContactPage } from './components/contact-page/contact-page';
 import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
+import { ProfilePage } from './components/profile-page/profile-page';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const routes: Routes = [
     { path: 'privacy-policy', component: PrivacyPolicy },
     { path: 'register', component: RegisterPage },
     { path: 'login', component: SigninPage },
+    {path: 'me', component: ProfilePage},
     { path: 'job-description', component: JobDescriptionPage, canActivate: [authGuard] },
     { path: 'dashboard', component: UserDashboardPage, canActivate: [authGuard] },
     { path: 'upload', component: UploadResumePage, canActivate: [authGuard] },

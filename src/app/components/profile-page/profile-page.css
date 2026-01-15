@@ -1,0 +1,63 @@
+.page-wrapper {
+    padding: 40px;
+}
+
+.profile-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.profile-card h2 {
+    margin-bottom: 5px;
+}
+
+.email {
+    color: #666;
+}
+
+.joined {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.btn-logout {
+    border: 1px solid #ff4d4f;
+    background: transparent;
+    color: #ff4d4f;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 22px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card h3 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.highlight {
+    border: 2px solid #18d27c;
+}
+
+.loading {
+    text-align: center;
+    padding: 60px;
+    font-size: 18px;
+}

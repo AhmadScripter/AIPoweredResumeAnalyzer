@@ -1,0 +1,35 @@
+<div class="container page-wrapper" *ngIf="!loading; else loader">
+
+    <div class="profile-card">
+      <h2>{{ user.name }}</h2>
+      <p class="email">{{ user.email }}</p>
+      <p class="joined">
+        Joined on {{ user.joinedAt | date:'dd MMM yyyy' }}
+      </p>
+  
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  
+    <div class="stats-grid">
+  
+      <div class="stat-card">
+        <h3>{{ stats.totalResumes }}</h3>
+        <p>Uploaded Resumes</p>
+      </div>
+  
+      <div class="stat-card">
+        <h3>{{ stats.totalAnalyses }}</h3>
+        <p>Total Analyses</p>
+      </div>
+  
+      <div class="stat-card highlight">
+        <h3>{{ stats.remainingToday }}</h3>
+        <p>Analyses Remaining Today</p>
+      </div>
+  
+    </div>
+  </div>
+  
+  <ng-template #loader>
+    <div class="loading">Loading profile...</div>
+  </ng-template>  

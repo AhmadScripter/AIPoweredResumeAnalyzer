@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const Resume = require('../models/Resume');
+const Analysis = require('../models/Analysis');
 
 const registerUser = async (req, res) => {
     try {
@@ -62,10 +64,32 @@ const loginUser = async (req, res) => {
 
 const getUserProfile = async (req, res) => {
     try {
+        const userId = req.user._id;
+
+        const totalResumes = await Resume.countDocuments({ user: userId });
+        const totalAnalyses = await Analysis.countDocuments({ user: userId });
+
+        const startOfDay = new Date();
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const todayAnalyses = await Analysis.countDocuments({
+            user: userId,
+            createdAt: { $gte: startOfDay }
+        });
+
         res.status(200).json({
             message: 'User profile fetched successfully',
             success: true,
-            user: req.user
+            user: {
+                name: req.user.name,
+                email: req.user.email,
+                joinedAt: req.user.createdAt
+            },
+            stats: {
+                totalResumes,
+                totalAnalyses,
+                remainingToday: Math.max(0, 3 - todayAnalyses)
+            }
         });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
